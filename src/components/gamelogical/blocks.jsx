@@ -9,7 +9,7 @@ export function Blocks(){
         'value': ''
     },
     {
-        'name': 'Batkensky',
+        'name': 'Kadamjaisky',
         'group': 'batken',
         'id': 1,
         'value': ''
@@ -19,7 +19,7 @@ export function Blocks(){
         'id': 2,
         'value': ''
     },       {
-        'name': 'Kadamjaisky',
+        'name': 'Batkensky',
         'group': 'batken',
         'id': 3,
         'value': ''
@@ -103,38 +103,38 @@ export function Blocks(){
         'value': ''
     },
     {
-        'name': '',
-        'group': '',
+        'name': 'Sokuluksy',
+        'group': 'bishkek',
         'id': 17,
         'value': ''
     },
     {
-        'name': '',
+        'name': 'Cheat',
         'group': 'chests',
         'id': 18,
         'value': ''
     },
     {
-        'name': '',
-        'group': '',
+        'name': 'Panfilovsky',
+        'group': 'bishkek',
         'id': 19,
         'value': ''
     },
     {
-        'name': '',
-        'group': '',
+        'name': 'Chuysky',
+        'group': 'bishkek',
         'id': 20,
         'value': ''
     },
     {
-        'name': '',
-        'group': '',
+        'name': 'Parking',
+        'group': 'parking',
         'id': 21,
         'value': ''
     },
     {
-        'name': '',
-        'group': '',
+        'name': 'Manasky',
+        'group': 'talas',
         'id': 22,
         'value': ''
     },
@@ -145,14 +145,14 @@ export function Blocks(){
         'value': ''
     },
     {
-        'name': '',
-        'group': '',
+        'name': 'Talasky',
+        'group': 'talas',
         'id': 24,
         'value': ''
     },
     {
-        'name': '',
-        'group': '',
+        'name': 'Bakaysky',
+        'group': 'talas',
         'id': 25,
         'value': ''
     },
@@ -187,32 +187,32 @@ export function Blocks(){
         'value': ''
     },
     {
-        'name': '',
-        'group': '',
+        'name': 'Go to jail',
+        'group': 'jail',
         'id': 31,
         'value': ''
     },
     {
-        'name': '',
-        'group': '',
+        'name': 'Alaysky',
+        'group': 'osh',
         'id': 32,
         'value': ''
     },
     {
-        'name': '',
-        'group': '',
+        'name': 'Uzgensky',
+        'group': 'osh',
         'id': 33,
         'value': ''
     },
     {
-        'name': '',
+        'name': 'Chest',
         'group': 'chests',
         'id': 34,
         'value': ''
     },
     {
-        'name': '',
-        'group': '',
+        'name': 'Kara-Kuldginsky',
+        'group': 'osh',
         'id': 35,
         'value': ''
     },
@@ -229,27 +229,21 @@ export function Blocks(){
         'value': ''
     },
     {
-        'name': '',
-        'group': '',
+        'name': 'Leninsky',
+        'group': 'bishkek',
         'id': 38,
-        'value': ''
-    },
-    {
-        'name': '',
-        'group': '',
-        'id': 39,
         'value': ''
     },
     {
         'name': 'Super-tax',
         'group': 'taxes',
-        'id': 40,
+        'id': 39,
         'value': ''
     },
     {
-        'name': '',
-        'group': '',
-        'id': 41,
+        'name': 'Octyabersky',
+        'group': 'bishkek',
+        'id': 40,
         'value': ''
     },
     ];
