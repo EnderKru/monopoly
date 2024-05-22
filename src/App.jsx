@@ -1,12 +1,13 @@
 import { useState } from 'react'
-import { GamePage } from './components/pages/GamePage/gamePage'
+import { RouterProvider, Router } from 'react-router-dom'
+import {router} from './app/index';
+
+
 import './common.css'
 
 function App() {
   return (
-    <div>
-      <GamePage/>
-    </div>
+  <RouterProvider router={router} />
   )
 }
 

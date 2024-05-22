@@ -1,10 +1,5 @@
-.tittle{
-    text-align: center;
-    font-family: var(--main-font);
-    font-size: 64px;
-}
+
 .gamePage{
     display: flex;
     flex-direction: column;
-    justify-content: center;
 }

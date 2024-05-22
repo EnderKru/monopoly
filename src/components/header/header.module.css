@@ -1,0 +1,9 @@
+.tittle{
+    text-align: center;
+    font-family: var(--main-font);
+    font-size: 64px;
+}
+.link{
+    text-decoration: none;
+    color: inherit;
+}
