@@ -1,6 +1,6 @@
 
 
-export function Square(name, pricetext, color, price, grouxpNumber, baserent, rent1, rent2, rent3, rent4, rent5) {
+export function Square(name, pricetext, color, price, groupNumber, baserent, rent1, rent2, rent3, rent4, rent5) {
 	this.name = name;
 	this.pricetext = pricetext;
 	this.color = color;
@@ -79,35 +79,181 @@ export function Square(name, pricetext, color, price, grouxpNumber, baserent, re
     square[38] = new Square("LUXURY TAX", "Pay $100", "#FFFFFF");
     square[39] = new Square("Bishkek    ", "$400", "#0000FF", 400, 10, 50, 200, 600, 1400, 1700, 2000);
 
+
+    var communityChestCards = [];
+var chanceCards = [];
+
+communityChestCards[0] = new Card("Get out of Jail, Free. This card may be kept until needed or sold.", function(p) { p.communityChestJailCard = true; updateOwned();});
+communityChestCards[1] = new Card("You have won second prize in a beauty contest. Collect $10.", function() { addamount(10, 'Community Chest');});
+communityChestCards[2] = new Card("From sale of stock, you get $50.", function() { addamount(50, 'Community Chest');});
+communityChestCards[3] = new Card("Life insurance matures. Collect $100.", function() { addamount(100, 'Community Chest');});
+communityChestCards[4] = new Card("Income tax refund. Collect $20.", function() { addamount(20, 'Community Chest');});
+communityChestCards[5] = new Card("Holiday fund matures. Receive $100.", function() { addamount(100, 'Community Chest');});
+communityChestCards[6] = new Card("You inherit $100.", function() { addamount(100, 'Community Chest');});
+communityChestCards[7] = new Card("Receive $25 consultancy fee.", function() { addamount(25, 'Community Chest');});
+communityChestCards[8] = new Card("Pay hospital fees of $100.", function() { subtractamount(100, 'Community Chest');});
+communityChestCards[9] = new Card("Bank error in your favor. Collect $200.", function() { addamount(200, 'Community Chest');});
+communityChestCards[10] = new Card("Pay school fees of $50.", function() { subtractamount(50, 'Community Chest');});
+communityChestCards[11] = new Card("Doctor's fee. Pay $50.", function() { subtractamount(50, 'Community Chest');});
+communityChestCards[12] = new Card("It is your birthday. Collect $10 from every player.", function() { collectfromeachplayer(10, 'Community Chest');});
+communityChestCards[13] = new Card("Advance to \"GO\" (Collect $200).", function() { advance(0);});
+communityChestCards[14] = new Card("You are assessed for street repairs. $40 per house. $115 per hotel.", function() { streetrepairs(40, 115);});
+communityChestCards[15] = new Card("Go to Jail. Go directly to Jail. Do not pass \"GO\". Do not collect $200.", function() { gotojail();});
+
+function chanceCommunityChest() {
+	var p = player[turn];
+
+	// Community Chest
+	if (p.position === 2 || p.position === 17 || p.position === 33) {
+		var communityChestIndex = communityChestCards.deck[communityChestCards.index];
+
+		// Remove the get out of jail free card from the deck.
+		if (communityChestIndex === 0) {
+			communityChestCards.deck.splice(communityChestCards.index, 1);
+		}
+
+		popup("<img src='images/community_chest_icon.png' style='height: 50px; width: 53px; float: left; margin: 8px 8px 8px 0px;' /><div style='font-weight: bold; font-size: 16px; '>Community Chest:</div><div style='text-align: justify;'>" + communityChestCards[communityChestIndex].text + "</div>", function() {
+			communityChestAction(communityChestIndex);
+		});
+
+		communityChestCards.index++;
+
+		if (communityChestCards.index >= communityChestCards.deck.length) {
+			communityChestCards.index = 0;
+		}
+
+	// Chance
+	} else if (p.position === 7 || p.position === 22 || p.position === 36) {
+		var chanceIndex = chanceCards.deck[chanceCards.index];
+
+		// Remove the get out of jail free card from the deck.
+		if (chanceIndex === 0) {
+			chanceCards.deck.splice(chanceCards.index, 1);
+		}
+
+		popup("<img src='images/chance_icon.png' style='height: 50px; width: 26px; float: left; margin: 8px 8px 8px 0px;' /><div style='font-weight: bold; font-size: 16px; '>Chance:</div><div style='text-align: justify;'>" + chanceCards[chanceIndex].text + "</div>", function() {
+			chanceAction(chanceIndex);
+		});
+
+		chanceCards.index++;
+
+		if (chanceCards.index >= chanceCards.deck.length) {
+			chanceCards.index = 0;
+		}
+	} else {
+	}
 }
 
+function chanceAction(chanceIndex) {
+	var p = player[turn]; // This is needed for reference in action() method.
 
-for (var i = 0; i < 40; i++) {
-    s = square[i];
+	// $('#popupbackground').hide();
+	// $('#popupwrap').hide();
+	chanceCards[chanceIndex].action(p);
 
-    currentCell = document.getElementById("cell" + i);
+	updateMoney();
 
-    currentCellAnchor = currentCell.appendChild(document.createElement("div"));
-    currentCellAnchor.id = "cell" + i + "anchor";
-    currentCellAnchor.className = "cell-anchor";
+	if (chanceIndex !== 15 && !p.human) {
+		p.AI.alertList = "";
+		game.next();
+	}
+}
 
-    currentCellPositionHolder = currentCellAnchor.appendChild(document.createElement("div"));
-    currentCellPositionHolder.id = "cell" + i + "positionholder";
-    currentCellPositionHolder.className = "cell-position-holder";
-    currentCellPositionHolder.enlargeId = "enlarge" + i;
+function communityChestAction(communityChestIndex) {
+	var p = player[turn]; // This is needed for reference in action() method.
 
-    currentCellName = currentCellAnchor.appendChild(document.createElement("div"));
-    currentCellName.id = "cell" + i + "name";
-    currentCellName.className = "cell-name";
-    currentCellName.textContent = s.name;
+	// $('#popupbackground').hide();
+	// $('#popupwrap').hide();
+	communityChestCards[communityChestIndex].action(p);
 
-    if (square[i].groupNumber) {
-        currentCellOwner = currentCellAnchor.appendChild(document.createElement("div"));
-        currentCellOwner.id = "cell" + i + "owner";
-        currentCellOwner.className = "cell-owner";
+	updateMoney();
+
+	if (communityChestIndex !== 15 && !p.human) {
+		p.AI.alertList = "";
+		game.next();
+	}
+}
+
+chanceCards[0] = new Card("GET OUT OF JAIL FREE. This card may be kept until needed or traded.", function(p) { p.chanceJailCard=true; updateOwned();});
+chanceCards[1] = new Card("Make General Repairs on All Your Property. For each house pay $25. For each hotel $100.", function() { streetrepairs(25, 100);});
+chanceCards[2] = new Card("Speeding fine $15.", function() { subtractamount(15, 'Chance');});
+chanceCards[3] = new Card("You have been elected chairman of the board. Pay each player $50.", function() { payeachplayer(50, 'Chance');});
+chanceCards[4] = new Card("Go back three spaces.", function() { gobackthreespaces();});
+chanceCards[5] = new Card("ADVANCE TO THE NEAREST UTILITY. IF UNOWNED, you may buy it from the Bank. IF OWNED, throw dice and pay owner a total ten times the amount thrown.", function() { advanceToNearestUtility();});
+chanceCards[6] = new Card("Bank pays you dividend of $50.", function() { addamount(50, 'Chance');});
+chanceCards[7] = new Card("ADVANCE TO THE NEAREST RAILROAD. If UNOWNED, you may buy it from the Bank. If OWNED, pay owner twice the rental to which they are otherwise entitled.", function() { advanceToNearestRailroad();});
+chanceCards[8] = new Card("Pay poor tax of $15.", function() { subtractamount(15, 'Chance');});
+chanceCards[9] = new Card("Take a trip to Reading Rail Road. If you pass \"GO\" collect $200.", function() { advance(5);});
+chanceCards[10] = new Card("ADVANCE to Boardwalk.", function() { advance(39);});
+chanceCards[11] = new Card("ADVANCE to Illinois Avenue. If you pass \"GO\" collect $200.", function() { advance(24);});
+chanceCards[12] = new Card("Your building loan matures. Collect $150.", function() { addamount(150, 'Chance');});
+chanceCards[13] = new Card("ADVANCE TO THE NEAREST RAILROAD. If UNOWNED, you may buy it from the Bank. If OWNED, pay owner twice the rental to which they are otherwise entitled.", function() { advanceToNearestRailroad();});
+chanceCards[14] = new Card("ADVANCE to St. Charles Place. If you pass \"GO\" collect $200.", function() { advance(11);});
+chanceCards[15] = new Card("Go to Jail. Go Directly to Jail. Do not pass \"GO\". Do not collect $200.", function() { gotojail();});
+
+
+
+    for (var i = 0; i < 40; i++) {
+        s = square[i];
+    
+        currentCell = document.getElementById("cell" + i);
+    
+        currentCellAnchor = currentCell.appendChild(document.createElement("div"));
+        currentCellAnchor.id = "cell" + i + "anchor";
+        currentCellAnchor.className = "cell-anchor";
+    
+        currentCellPositionHolder = currentCellAnchor.appendChild(document.createElement("div"));
+        currentCellPositionHolder.id = "cell" + i + "positionholder";
+        currentCellPositionHolder.className = "cell-position-holder";
+        currentCellPositionHolder.enlargeId = "enlarge" + i;
+    
+        currentCellName = currentCellAnchor.appendChild(document.createElement("div"));
+        currentCellName.id = "cell" + i + "name";
+        currentCellName.className = "cell-name";
+        currentCellName.textContent = s.name;
+    
+        if (square[i].groupNumber) {
+            currentCellOwner = currentCellAnchor.appendChild(document.createElement("div"));
+            currentCellOwner.id = "cell" + i + "owner";
+            currentCellOwner.className = "cell-owner";
+        }
+    
+        document.getElementById("enlarge" + i + "color").style.backgroundColor = s.color;
+        document.getElementById("enlarge" + i + "name").textContent = s.name;
+        document.getElementById("enlarge" + i + "price").textContent = s.pricetext;
     }
 
-    document.getElementById("enlarge" + i + "color").style.backgroundColor = s.color;
-    document.getElementById("enlarge" + i + "name").textContent = s.name;
-    document.getElementById("enlarge" + i + "price").textContent = s.pricetext;
+     function corrections() {
+        document.getElementById("cell1name").textContent = "Mediter-ranean Avenue";
+    
+        document.getElementById("enlarge5token").innerHTML += '<img src="images/train_icon.png" height="60" width="65" alt="" style="position: relative; bottom: 20px;" />';
+        document.getElementById("enlarge15token").innerHTML += '<img src="images/train_icon.png" height="60" width="65" alt="" style="position: relative; top: -20px;" />';
+        document.getElementById("enlarge25token").innerHTML += '<img src="images/train_icon.png" height="60" width="65" alt="" style="position: relative; top: -20px;" />';
+        document.getElementById("enlarge35token").innerHTML += '<img src="images/train_icon.png" height="60" width="65" alt="" style="position: relative; top: -20px;" />';
+        document.getElementById("enlarge12token").innerHTML += '<img src="images/electric_icon.png" height="60" width="48" alt="" style="position: relative; top: -20px;" />';
+        document.getElementById("enlarge28token").innerHTML += '<img src="images/water_icon.png" height="60" width="78" alt="" style="position: relative; top: -20px;" />';
+    }
+     function utiltext() {
+        return '&nbsp;&nbsp;&nbsp;&nbsp;If one "Utility" is owned rent is 4 times amount shown on dice.<br /><br />&nbsp;&nbsp;&nbsp;&nbsp;If both "Utilitys" are owned rent is 10 times amount shown on dice.';
+    }
+    
+    function transtext() {
+        return '<div style="font-size: 14px; line-height: 1.5;">Rent<span style="float: right;">$25.</span><br />If 2 Railroads are owned<span style="float: right;">50.</span><br />If 3 &nbsp; &nbsp; " &nbsp; &nbsp; " &nbsp; &nbsp; "<span style="float: right;">100.</span><br />If 4 &nbsp; &nbsp; " &nbsp; &nbsp; " &nbsp; &nbsp; "<span style="float: right;">200.</span></div>';
+    }
+    function luxurytax() {
+        addAlert(player[turn].name + " paid $100 for landing on Luxury Tax.");
+        player[turn].pay(100, 0);
+    
+        $("#landed").show().text("You landed on Luxury Tax. Pay $100.");
+    }
+    
+    function citytax() {
+        addAlert(player[turn].name + " paid $200 for landing on City Tax.");
+        player[turn].pay(200, 0);
+    
+        $("#landed").show().text("You landed on City Tax. Pay $200.");
+    }
+    
+    
+    
 }

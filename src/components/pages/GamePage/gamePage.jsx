@@ -1,13 +1,17 @@
 import classes from './gamePage.module.css'
 import { Map } from '../../map/map'
 import { Header } from '../../header/header'
+import { Accounts } from '../../gamelogical/accounts'
 
 export function GamePage() {
     return(
         <div className={classes.gamePage}>
                 <Header/>
                 <div className="conteiner">
-                <Map/>
+                    <div className={classes.game}>
+                    <Map/>
+                    <Accounts/>
+                    </div>
                 </div>
         </div>
     )

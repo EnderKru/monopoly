@@ -1,4 +1,7 @@
-
+.game{
+    display: flex;
+    justify-content: space-between;
+}
 .gamePage{
     display: flex;
     flex-direction: column;
