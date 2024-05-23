@@ -1,7 +1,7 @@
 import classes from "./gamePage.module.css";
 import { Map } from "../../map/map";
 import { Header } from "../../header/header";
-import { Accounts } from "../../gamelogical/accounts";
+import { useEffect } from "react";
 
 export function GamePage() {
   return (

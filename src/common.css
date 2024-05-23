@@ -35,7 +35,9 @@
     padding: 50px;
   }
 }
-
+.selectcolor {
+  background-color: #305bc9;
+}
 body {
   background: #ffffff;
   margin: 0px;

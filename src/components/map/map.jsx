@@ -5,7 +5,8 @@ import dieicon3 from "../../assets/img/Die-3.svg";
 import dieicon4 from "../../assets/img/Die-4.svg";
 import dieicon5 from "../../assets/img/Die-5.svg";
 import dieicon6 from "../../assets/img/Die-6.svg";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useMyContext } from "../helpers/context.jsx";
 
 const squareData = [
   {
@@ -13,810 +14,565 @@ const squareData = [
     pricetext: "COLLECT $200 SALARY AS YOU PASS.",
     color: "#FFFFFF",
     owner: false,
-    mortgage: false,
-    house: false,
-    hotel: false,
     baserent: false,
-    rent1: false,
-    rent2: false,
-    rent3: false,
-    landcount: false,
   },
   {
     name: "Suyulak",
     pricetext: "$60",
     color: "#8B4513",
     owner: false,
-    mortgage: false,
-    house: false,
-    hotel: false,
     baserent: 90,
-    rent1: 160,
-    rent2: 250,
-    rent3: false,
-    landcount: 2,
   },
   {
     name: "Community Chest",
     pricetext: "FOLLOW INSTRUCTIONS ON TOP CARD",
     color: "#FFFFFF",
     owner: false,
-    mortgage: false,
-    house: false,
-    hotel: false,
     baserent: false,
-    rent1: false,
-    rent2: false,
-    rent3: false,
-    landcount: false,
   },
   {
     name: "Batken",
     pricetext: "$60",
     color: "#8B4513",
     owner: false,
-    mortgage: false,
-    house: false,
-    hotel: false,
     baserent: 180,
-    rent1: 320,
-    rent2: 450,
-    rent3: false,
-    landcount: 4,
   },
   {
     name: "City Tax",
     pricetext: "Pay $200",
     color: "#FFFFFF",
     owner: false,
-    mortgage: false,
-    house: false,
-    hotel: false,
     baserent: false,
-    rent1: false,
-    rent2: false,
-    rent3: false,
-    landcount: false,
   },
   {
     name: "Osh-1",
     pricetext: "$200",
     color: "#FFFFFF",
     owner: false,
-    mortgage: false,
-    house: false,
-    hotel: false,
     baserent: false,
-    rent1: false,
-    rent2: false,
-    rent3: false,
-    landcount: 1,
   },
   {
     name: "Besh-Tash",
     pricetext: "$100",
     color: "#87CEEB",
     owner: false,
-    mortgage: false,
-    house: false,
-    hotel: false,
     baserent: 90,
-    rent1: 270,
-    rent2: 400,
-    rent3: 550,
-    landcount: 6,
   },
   {
     name: "Chance",
     pricetext: "FOLLOW INSTRUCTIONS ON TOP CARD",
     color: "#FFFFFF",
     owner: false,
-    mortgage: false,
-    house: false,
-    hotel: false,
     baserent: false,
-    rent1: false,
-    rent2: false,
-    rent3: false,
-    landcount: false,
   },
   {
     name: "Ak-Naryn",
     pricetext: "$100",
     color: "#87CEEB",
     owner: false,
-    mortgage: false,
-    house: false,
-    hotel: false,
     baserent: 90,
-    rent1: 270,
-    rent2: 400,
-    rent3: 550,
-    landcount: 6,
   },
   {
     name: "Talas",
     pricetext: "$120",
     color: "#87CEEB",
     owner: false,
-    mortgage: false,
-    house: false,
-    hotel: false,
     baserent: 100,
-    rent1: 300,
-    rent2: 450,
-    rent3: 600,
-    landcount: 8,
   },
   {
     name: "Just Visiting",
     pricetext: "",
     color: "#FFFFFF",
     owner: false,
-    mortgage: false,
-    house: false,
-    hotel: false,
     baserent: false,
-    rent1: false,
-    rent2: false,
-    rent3: false,
-    landcount: false,
   },
   {
     name: "Kazarman",
     pricetext: "$140",
     color: "#FF0080",
     owner: false,
-    mortgage: false,
-    house: false,
-    hotel: false,
     baserent: 150,
-    rent1: 450,
-    rent2: 625,
-    rent3: 750,
-    landcount: 10,
   },
   {
     name: "Electric Company",
     pricetext: "$150",
     color: "#FFFFFF",
     owner: false,
-    mortgage: false,
-    house: false,
-    hotel: false,
     baserent: false,
-    rent1: false,
-    rent2: false,
-    rent3: false,
-    landcount: 2,
   },
   {
     name: "Tash-Kumyr",
     pricetext: "$140",
     color: "#FF0080",
     owner: false,
-    mortgage: false,
-    house: false,
-    hotel: false,
     baserent: 150,
-    rent1: 450,
-    rent2: 625,
-    rent3: 750,
-    landcount: 10,
   },
   {
     name: "Dzhalal-Abad",
     pricetext: "$160",
     color: "#FF0080",
     owner: false,
-    mortgage: false,
-    house: false,
-    hotel: false,
     baserent: 180,
-    rent1: 500,
-    rent2: 700,
-    rent3: 900,
-    landcount: 12,
   },
   {
     name: "Osh-2",
     pricetext: "$200",
     color: "#FFFFFF",
     owner: false,
-    mortgage: false,
-    house: false,
-    hotel: false,
     baserent: false,
-    rent1: false,
-    rent2: false,
-    rent3: false,
-    landcount: 1,
   },
   {
     name: "Sary-Oy",
     pricetext: "$180",
     color: "#FFA500",
     owner: false,
-    mortgage: false,
-    house: false,
-    hotel: false,
     baserent: 200,
-    rent1: 550,
-    rent2: 750,
-    rent3: 950,
-    landcount: 14,
   },
   {
     name: "Community Chest",
     pricetext: "FOLLOW INSTRUCTIONS ON TOP CARD",
     color: "#FFFFFF",
     owner: false,
-    mortgage: false,
-    house: false,
-    hotel: false,
     baserent: false,
-    rent1: false,
-    rent2: false,
-    rent3: false,
-    landcount: false,
   },
   {
     name: "Uchkun",
     pricetext: "$180",
     color: "#FFA500",
     owner: false,
-    mortgage: false,
-    house: false,
-    hotel: false,
     baserent: 200,
-    rent1: 550,
-    rent2: 750,
-    rent3: 950,
-    landcount: 14,
   },
   {
     name: "Naryn",
     pricetext: "$200",
     color: "#FFA500",
     owner: false,
-    mortgage: false,
-    house: false,
-    hotel: false,
     baserent: 220,
-    rent1: 600,
-    rent2: 800,
-    rent3: 1000,
-    landcount: 16,
   },
   {
     name: "Free Parking",
     pricetext: "",
     color: "#FFFFFF",
     owner: false,
-    mortgage: false,
-    house: false,
-    hotel: false,
     baserent: false,
-    rent1: false,
-    rent2: false,
-    rent3: false,
-    landcount: false,
   },
   {
     name: "Nookat",
     pricetext: "$220",
     color: "#FF0000",
     owner: false,
-    mortgage: false,
-    house: false,
-    hotel: false,
     baserent: 250,
-    rent1: 700,
-    rent2: 875,
-    rent3: 1050,
-    landcount: 18,
   },
   {
     name: "Chance",
     pricetext: "FOLLOW INSTRUCTIONS ON TOP CARD",
     color: "#FFFFFF",
     owner: false,
-    mortgage: false,
-    house: false,
-    hotel: false,
     baserent: false,
-    rent1: false,
-    rent2: false,
-    rent3: false,
-    landcount: false,
   },
   {
     name: "Aravan",
     pricetext: "$220",
     color: "#FF0000",
     owner: false,
-    mortgage: false,
-    house: false,
-    hotel: false,
     baserent: 250,
-    rent1: 700,
-    rent2: 875,
-    rent3: 1050,
-    landcount: 18,
   },
   {
     name: "Uzgon",
     pricetext: "$240",
     color: "#FF0000",
     owner: false,
-    mortgage: false,
-    house: false,
-    hotel: false,
     baserent: 300,
-    rent1: 750,
-    rent2: 925,
-    rent3: 1100,
-    landcount: 20,
   },
   {
     name: "Bishkek-1",
     pricetext: "$200",
     color: "#FFFFFF",
     owner: false,
-    mortgage: false,
-    house: false,
-    hotel: false,
     baserent: false,
-    rent1: false,
-    rent2: false,
-    rent3: false,
-    landcount: 1,
   },
   {
     name: "Chon-Aryk",
     pricetext: "$260",
     color: "#FFFF00",
     owner: false,
-    mortgage: false,
-    house: false,
-    hotel: false,
     baserent: 330,
-    rent1: 800,
-    rent2: 975,
-    rent3: 1150,
-    landcount: 22,
   },
   {
     name: "Kara-Balta",
     pricetext: "$260",
     color: "#FFFF00",
     owner: false,
-    mortgage: false,
-    house: false,
-    hotel: false,
     baserent: 330,
-    rent1: 800,
-    rent2: 975,
-    rent3: 1150,
-    landcount: 22,
   },
   {
     name: "Water Works",
     pricetext: "$150",
     color: "#FFFFFF",
     owner: false,
-    mortgage: false,
-    house: false,
-    hotel: false,
     baserent: false,
-    rent1: false,
-    rent2: false,
-    rent3: false,
-    landcount: 2,
   },
   {
     name: "Tokmok",
     pricetext: "$280",
     color: "#FFFF00",
     owner: false,
-    mortgage: false,
-    house: false,
-    hotel: false,
     baserent: 360,
-    rent1: 850,
-    rent2: 1025,
-    rent3: 1200,
-    landcount: 24,
   },
   {
     name: "Go to Jail",
     pricetext: "Go directly to Jail. Do not pass GO. Do not collect $200.",
     color: "#FFFFFF",
     owner: false,
-    mortgage: false,
-    house: false,
-    hotel: false,
     baserent: false,
-    rent1: false,
-    rent2: false,
-    rent3: false,
-    landcount: false,
   },
   {
     name: "Bostori",
     pricetext: "$300",
     color: "#008000",
     owner: false,
-    mortgage: false,
-    house: false,
-    hotel: false,
     baserent: 390,
-    rent1: 900,
-    rent2: 1100,
-    rent3: 1275,
-    landcount: 26,
   },
   {
     name: "Cholpon-Ata",
     pricetext: "$300",
     color: "#008000",
     owner: false,
-    mortgage: false,
-    house: false,
-    hotel: false,
     baserent: 390,
-    rent1: 900,
-    rent2: 1100,
-    rent3: 1275,
-    landcount: 26,
   },
   {
     name: "Community Chest",
     pricetext: "FOLLOW INSTRUCTIONS ON TOP CARD",
     color: "#FFFFFF",
     owner: false,
-    mortgage: false,
-    house: false,
-    hotel: false,
     baserent: false,
-    rent1: false,
-    rent2: false,
-    rent3: false,
-    landcount: false,
   },
   {
     name: "Karakol",
     pricetext: "$320",
     color: "#008000",
     owner: false,
-    mortgage: false,
-    house: false,
-    hotel: false,
     baserent: 450,
-    rent1: 1000,
-    rent2: 1200,
-    rent3: 1400,
-    landcount: 28,
   },
   {
     name: "Bishkek-2",
     pricetext: "$200",
     color: "#FFFFFF",
     owner: false,
-    mortgage: false,
-    house: false,
-    hotel: false,
     baserent: false,
-    rent1: false,
-    rent2: false,
-    rent3: false,
-    landcount: 1,
   },
   {
     name: "Chance",
     pricetext: "FOLLOW INSTRUCTIONS ON TOP CARD",
     color: "#FFFFFF",
     owner: false,
-    mortgage: false,
-    house: false,
-    hotel: false,
     baserent: false,
-    rent1: false,
-    rent2: false,
-    rent3: false,
-    landcount: false,
   },
   {
     name: "Osh",
     pricetext: "$350",
     color: "#0000FF",
     owner: false,
-    mortgage: false,
-    house: false,
-    hotel: false,
     baserent: 500,
-    rent1: 1100,
-    rent2: 1300,
-    rent3: 1500,
-    landcount: 35,
   },
   {
     name: "LUXURY TAX",
     pricetext: "Pay $100",
     color: "#FFFFFF",
     owner: false,
-    mortgage: false,
-    house: false,
-    hotel: false,
     baserent: false,
-    rent1: false,
-    rent2: false,
-    rent3: false,
-    landcount: false,
   },
   {
     name: "Bishkek",
     pricetext: "$400",
     color: "#0000FF",
     owner: false,
-    mortgage: false,
-    house: false,
-    hotel: false,
     baserent: 600,
-    rent1: 1400,
-    rent2: 1700,
-    rent3: 2000,
-    landcount: 50,
   },
 ];
 
+const usersdb = [
+  {
+    id: 1,
+    name: "Player 1",
+    money: 1500,
+    houses: [],
+    points: 0,
+  },
+  {
+    id: 2,
+    name: "Player 2",
+    money: 1500,
+    houses: [],
+    points: 0,
+  },
+  {
+    id: 3,
+    name: "Player 3",
+    money: 1500,
+    houses: [],
+    points: 0,
+  },
+  {
+    id: 4,
+    name: "Player 4",
+    money: 1500,
+    houses: [],
+    points: 0,
+  },
+  {
+    id: 5,
+    name: "Player 5",
+    money: 1500,
+    houses: [],
+    points: 0,
+  },
+  {
+    id: 6,
+    name: "Player 6",
+    money: 1500,
+    houses: [],
+    points: 0,
+  },
+  {
+    id: 7,
+    name: "Player 7",
+    money: 1500,
+    houses: [],
+    points: 0,
+  },
+  {
+    id: 8,
+    name: "Player 8",
+    money: 1500,
+    houses: [],
+    points: 0,
+  },
+];
 export function Map() {
   const [die, seDieSt] = useState(false);
+  const [que, setQue] = useState(false);
   let [die1, seDieSt1] = useState(null);
   let [die2, seDieSt2] = useState(null);
+  let [user, setUser] = useState(0);
+
+  function handleClick() {
+    rollDice();
+    nextUser();
+    setTimeout(houseAlert, 500);
+  }
+
   function rollDice() {
     seDieSt1(Math.floor(Math.random() * 6) + 1);
     seDieSt2(Math.floor(Math.random() * 6) + 1);
     seDieSt(true);
+
+    usersdb[user].points = usersdb[user].points + die1 + die2;
+    if (usersdb[user].points > 40) {
+      usersdb[user].points = usersdb[user].points - 40;
+    }
+    console.log(usersdb[user].houses);
   }
+  function nextUser() {
+    if (user < users - 1) {
+      setUser(user + 1);
+    } else if (user >= users - 1) {
+      setUser(0);
+    }
+  }
+  function houseAlert() {
+    setQue(confirm("Вы хотите купить этот дом?"));
+    if (que) {
+      usersdb[user].houses.push({
+        id: usersdb[user].points,
+        name: `Bishkek`,
+        price: `200$`,
+      });
+      usersdb[user].money = usersdb[user].money - 200;
+    }
+  }
+  const { users } = useMyContext();
   return (
     <div className="map">
       <div id="moneybarwrap">
         <div id="moneybar">
-          <button onClick={() => onsole.log(props.numuser)}>dawdadw</button>
           <table>
-            <tbody>
-              <tr id="moneybarrow1" className="money-bar-row">
-                <td className="moneybararrowcell">
-                  <img
-                    src="src\assets\img\arrow.svg"
-                    id="p1arrow"
-                    className="money-bar-arrow"
-                    style={{ width: "50px" }}
-                    alt=">"
-                  />
-                </td>
-                <td id="p1moneybar" className="moneybarcell">
-                  <div>
-                    <span id="p1moneyname">Player 1</span>:
-                  </div>
-                  <div>
-                    $<span id="p1money">1500</span>
-                  </div>
-                </td>
-              </tr>
-              <tr id="moneybarrow2" className="money-bar-row">
-                <td className="moneybararrowcell">
-                  <img
-                    src="src\assets\img\arrow.svg"
-                    id="p1arrow"
-                    className="money-bar-arrow"
-                    style={{ width: "50px" }}
-                    alt=">"
-                  />
-                </td>
-                <td id="p2moneybar" className="moneybarcell">
-                  <div>
-                    <span id="p2moneyname">Player 2</span>:
-                  </div>
-                  <div>
-                    $<span id="p2money">1500</span>
-                  </div>
-                </td>
-              </tr>
-              <tr id="moneybarrow3" className="money-bar-row">
-                <td className="moneybararrowcell">
-                  <img
-                    src="src\assets\img\arrow.svg"
-                    id="p1arrow"
-                    className="money-bar-arrow"
-                    style={{ width: "50px" }}
-                    alt=">"
-                  />
-                </td>
-                <td id="p3moneybar" className="moneybarcell">
-                  <div>
-                    <span id="p3moneyname">Player 3</span>:
-                  </div>
-                  <div>
-                    $<span id="p3money">1500</span>
-                  </div>
-                </td>
-              </tr>
-              <tr id="moneybarrow4" className="money-bar-row">
-                <td className="moneybararrowcell">
-                  <img
-                    src="src\assets\img\arrow.svg"
-                    id="p1arrow"
-                    className="money-bar-arrow"
-                    style={{ width: "50px" }}
-                    alt=">"
-                  />
-                </td>
-                <td id="p4moneybar" className="moneybarcell">
-                  <div>
-                    <span id="p4moneyname">Player 4</span>:
-                  </div>
-                  <div>
-                    $<span id="p4money">1500</span>
-                  </div>
-                </td>
-              </tr>
-              <tr id="moneybarrow5" className="money-bar-row">
-                <td className="moneybararrowcell">
-                  <img
-                    src="src\assets\img\arrow.svg"
-                    id="p1arrow"
-                    className="money-bar-arrow"
-                    style={{ width: "50px" }}
-                    alt=">"
-                  />
-                </td>
-                <td id="p5moneybar" className="moneybarcell">
-                  <div>
-                    <span id="p5moneyname">Player 5</span>:
-                  </div>
-                  <div>
-                    $<span id="p5money">1500</span>
-                  </div>
-                </td>
-              </tr>
-              <tr id="moneybarrow6" className="money-bar-row">
-                <td className="moneybararrowcell">
-                  <img
-                    src="src\assets\img\arrow.svg"
-                    id="p1arrow"
-                    className="money-bar-arrow"
-                    style={{ width: "50px" }}
-                    alt=">"
-                  />
-                </td>
-                <td id="p6moneybar" className="moneybarcell">
-                  <div>
-                    <span id="p6moneyname">Player 6</span>:
-                  </div>
-                  <div>
-                    $<span id="p6money">1500</span>
-                  </div>
-                </td>
-              </tr>
-              <tr id="moneybarrow7" className="money-bar-row">
-                <td className="moneybararrowcell">
-                  <img
-                    src="src\assets\img\arrow.svg"
-                    id="p1arrow"
-                    className="money-bar-arrow"
-                    style={{ width: "50px" }}
-                    alt=">"
-                  />
-                </td>
-                <td id="p7moneybar" className="moneybarcell">
-                  <div>
-                    <span id="p7moneyname">Player 7</span>:
-                  </div>
-                  <div>
-                    $<span id="p7money">1500</span>
-                  </div>
-                </td>
-              </tr>
-              <tr id="moneybarrow8" className="money-bar-row">
-                <td className="moneybararrowcell">
-                  <img
-                    src="src\assets\img\arrow.svg"
-                    id="p1arrow"
-                    className="money-bar-arrow"
-                    style={{ width: "50px" }}
-                    alt=">"
-                  />
-                </td>
-                <td id="p8moneybar" className="moneybarcell">
-                  <div>
-                    <span id="p8moneyname">Player 8</span>:
-                  </div>
-                  <div>
-                    $<span id="p8money">1500</span>
-                  </div>
-                </td>
-              </tr>
-              <tr id="moneybarrowbutton">
-                <td className="moneybararrowcell">&nbsp;</td>
-                <td>
-                  <input
-                    type="button"
-                    id="viewstats"
-                    value="View stats"
-                    title="View a pop-up window that shows a list of each player's properties."
-                  />
-                </td>
-              </tr>
-            </tbody>
+            {usersdb.map((item) =>
+              item.id <= users ? (
+                <tbody>
+                  <tr id="moneybarrow1" className="money-bar-row">
+                    <td id="p1moneybar" className="moneybarcell">
+                      <div>
+                        <span id="p1moneyname">{item.name}</span>:
+                      </div>
+                      <div>
+                        $<span id="p1money">{item.money}</span>
+                      </div>
+                    </td>
+                  </tr>
+                </tbody>
+              ) : (
+                <div></div>
+              )
+            )}
           </table>
         </div>
       </div>
       <div>
         <table>
           <tr>
-            <td className="cell board-corner">
-              <div>
-                <p>Bishkek</p>
-                <p>200$</p>
-              </div>
-            </td>
-            <td className="cell board-top">
-              <div>
-                <p>Bishkek</p>
-                <p>200$</p>
-              </div>
-            </td>
-            <td className="cell board-top">
-              <div>
-                <p>Bishkek</p>
-                <p>200$</p>
-              </div>
-            </td>
-            <td className="cell board-top">
-              <div>
-                <p>Bishkek</p>
-                <p>200$</p>
-              </div>
-            </td>
-            <td className="cell board-top">
-              <div>
-                <p>Bishkek</p>
-                <p>200$</p>
-              </div>
-            </td>
-            <td className="cell board-top">
-              <div>
-                <p>Bishkek</p>
-                <p>200$</p>
-              </div>
-            </td>
-            <td className="cell board-top">
-              <div>
-                <p>Bishkek</p>
-                <p>200$</p>
-              </div>
-            </td>
-            <td className="cell board-top">
-              <div>
-                <p>Bishkek</p>
-                <p>200$</p>
-              </div>
-            </td>
-            <td className="cell board-top">
-              <div>
-                <p>Bishkek</p>
-                <p>200$</p>
-              </div>
-            </td>
-            <td className="cell board-top">
-              <div>
-                <p>Bishkek</p>
-                <p>200$</p>
-              </div>
-            </td>
-            <td className="cell board-corner">
+            {usersdb[user].points == 1 ? (
+              <td className="cell board-corner selectcolor" id="cell1">
+                <div>
+                  <p>Bishkek</p>
+                  <p>200$</p>
+                </div>
+              </td>
+            ) : (
+              <td className="cell board-corner " id="cell1">
+                <div>
+                  <p>Bishkek</p>
+                  <p>200$</p>
+                </div>
+              </td>
+            )}
+            {usersdb[user].points == 2 ? (
+              <td className="cell board-top selectcolor" id="cell2">
+                <div>
+                  <p>Bishkek</p>
+                  <p>200$</p>
+                </div>
+              </td>
+            ) : (
+              <td className="cell board-top" id="cell2">
+                <div>
+                  <p>Bishkek</p>
+                  <p>200$</p>
+                </div>
+              </td>
+            )}
+
+            {usersdb[user].points == 3 ? (
+              <td className="cell board-top selectcolor" id="cell3">
+                <div>
+                  <p>Bishkek</p>
+                  <p>200$</p>
+                </div>
+              </td>
+            ) : (
+              <td className="cell board-top" id="cell3">
+                <div>
+                  <p>Bishkek</p>
+                  <p>200$</p>
+                </div>
+              </td>
+            )}
+            {usersdb[user].points == 4 ? (
+              <td className="cell board-top selectcolor" id="cell4">
+                <div>
+                  <p>Bishkek</p>
+                  <p>200$</p>
+                </div>
+              </td>
+            ) : (
+              <td className="cell board-top" id="cell4">
+                <div>
+                  <p>Bishkek</p>
+                  <p>200$</p>
+                </div>
+              </td>
+            )}
+            {usersdb[user].points == 5 ? (
+              <td className="cell board-top selectcolor" id="cell5">
+                <div>
+                  <p>Bishkek</p>
+                  <p>200$</p>
+                </div>
+              </td>
+            ) : (
+              <td className="cell board-top" id="cell5">
+                <div>
+                  <p>Bishkek</p>
+                  <p>200$</p>
+                </div>
+              </td>
+            )}
+            {usersdb[user].points == 6 ? (
+              <td className="cell board-top selectcolor" id="cell6">
+                <div>
+                  <p>Bishkek</p>
+                  <p>200$</p>
+                </div>
+              </td>
+            ) : (
+              <td className="cell board-top" id="cell6">
+                <div>
+                  <p>Bishkek</p>
+                  <p>200$</p>
+                </div>
+              </td>
+            )}
+            {usersdb[user].points == 7 ? (
+              <td className="cell board-top selectcolor" id="cell7">
+                <div>
+                  <p>Bishkek</p>
+                  <p>200$</p>
+                </div>
+              </td>
+            ) : (
+              <td className="cell board-top" id="cell7">
+                <div>
+                  <p>Bishkek</p>
+                  <p>200$</p>
+                </div>
+              </td>
+            )}
+            {usersdb[user].points == 8 ? (
+              <td className="cell board-top selectcolor" id="cell8">
+                <div>
+                  <p>Bishkek</p>
+                  <p>200$</p>
+                </div>
+              </td>
+            ) : (
+              <td className="cell board-top" id="cell8">
+                <div>
+                  <p>Bishkek</p>
+                  <p>200$</p>
+                </div>
+              </td>
+            )}
+            {usersdb[user].points == 9 ? (
+              <td className="cell board-top selectcolor" id="cell9">
+                <div>
+                  <p>Bishkek</p>
+                  <p>200$</p>
+                </div>
+              </td>
+            ) : (
+              <td className="cell board-top" id="cell9">
+                <div>
+                  <p>Bishkek</p>
+                  <p>200$</p>
+                </div>
+              </td>
+            )}
+            {usersdb[user].points == 10 ? (
+              <td className="cell board-top selectcolor" id="cell10">
+                <div>
+                  <p>Bishkek</p>
+                  <p>200$</p>
+                </div>
+              </td>
+            ) : (
+              <td className="cell board-top" id="cell10">
+                <div>
+                  <p>Bishkek</p>
+                  <p>200$</p>
+                </div>
+              </td>
+            )}
+            <td className="cell board-corner" id="cell11">
               <div>
                 <p>Bishkek</p>
                 <p>200$</p>
@@ -824,14 +580,14 @@ export function Map() {
             </td>
           </tr>
           <tr>
-            <td className="cell board-left">
+            <td className="cell board-left" id="cell12">
               <div>
                 <p>Bishkek</p>
                 <p>200$</p>
               </div>
             </td>
             <td colspan="9" class="board-center"></td>
-            <td className="cell board-right">
+            <td className="cell board-right" id="cell13">
               <div>
                 <p>Bishkek</p>
                 <p>200$</p>
@@ -839,14 +595,14 @@ export function Map() {
             </td>
           </tr>
           <tr>
-            <td className="cell board-left">
+            <td className="cell board-left" id="cell14">
               <div>
                 <p>Bishkek</p>
                 <p>200$</p>
               </div>
             </td>
             <td colspan="9" class="board-center"></td>
-            <td className="cell board-right">
+            <td className="cell board-right" id="cell15">
               <div>
                 <p>Bishkek</p>
                 <p>200$</p>
@@ -854,14 +610,14 @@ export function Map() {
             </td>
           </tr>
           <tr>
-            <td className="cell board-left">
+            <td className="cell board-left" id="cell16">
               <div>
                 <p>Bishkek</p>
                 <p>200$</p>
               </div>
             </td>
             <td colspan="9" class="board-center"></td>
-            <td className="cell board-right">
+            <td className="cell board-right" id="cell17">
               <div>
                 <p>Bishkek</p>
                 <p>200$</p>
@@ -869,14 +625,14 @@ export function Map() {
             </td>
           </tr>
           <tr>
-            <td className="cell board-left">
+            <td className="cell board-left" id="cell18">
               <div>
                 <p>Bishkek</p>
                 <p>200$</p>
               </div>
             </td>
             <td colspan="9" class="board-center"></td>
-            <td className="cell board-right">
+            <td className="cell board-right" id="cell19">
               <div>
                 <p>Bishkek</p>
                 <p>200$</p>
@@ -884,14 +640,14 @@ export function Map() {
             </td>
           </tr>
           <tr>
-            <td className="cell board-left">
+            <td className="cell board-left" id="cell20">
               <div>
                 <p>Bishkek</p>
                 <p>200$</p>
               </div>
             </td>
             <td colspan="9" class="board-center"></td>
-            <td className="cell board-right">
+            <td className="cell board-right" id="cell21">
               <div>
                 <p>Bishkek</p>
                 <p>200$</p>
@@ -899,14 +655,14 @@ export function Map() {
             </td>
           </tr>
           <tr>
-            <td className="cell board-left">
+            <td className="cell board-left" id="cell22">
               <div>
                 <p>Bishkek</p>
                 <p>200$</p>
               </div>
             </td>
             <td colspan="9" class="board-center"></td>
-            <td className="cell board-right">
+            <td className="cell board-right" id="cell23">
               <div>
                 <p>Bishkek</p>
                 <p>200$</p>
@@ -914,14 +670,14 @@ export function Map() {
             </td>
           </tr>
           <tr>
-            <td className="cell board-left">
+            <td className="cell board-left" id="cell24">
               <div>
                 <p>Bishkek</p>
                 <p>200$</p>
               </div>
             </td>
             <td colspan="9" class="board-center"></td>
-            <td className="cell board-right">
+            <td className="cell board-right" id="cell25">
               <div>
                 <p>Bishkek</p>
                 <p>200$</p>
@@ -929,14 +685,14 @@ export function Map() {
             </td>
           </tr>
           <tr>
-            <td className="cell board-left">
+            <td className="cell board-left" id="cell26">
               <div>
                 <p>Bishkek</p>
                 <p>200$</p>
               </div>
             </td>
             <td colspan="9" class="board-center"></td>
-            <td className="cell board-right">
+            <td className="cell board-right" id="cell27">
               <div>
                 <p>Bishkek</p>
                 <p>200$</p>
@@ -944,14 +700,14 @@ export function Map() {
             </td>
           </tr>
           <tr>
-            <td className="cell board-left">
+            <td className="cell board-left" id="cell28">
               <div>
                 <p>Bishkek</p>
                 <p>200$</p>
               </div>
             </td>
             <td colspan="9" class="board-center"></td>
-            <td className="cell board-right">
+            <td className="cell board-right" id="cell29">
               <div>
                 <p>Bishkek</p>
                 <p>200$</p>
@@ -959,67 +715,67 @@ export function Map() {
             </td>
           </tr>
           <tr>
-            <td className="cell board-corner">
+            <td className="cell board-corner" id="cell30">
               <div>
                 <p>Bishkek</p>
                 <p>200$</p>
               </div>
             </td>
-            <td className="cell board-bottom">
+            <td className="cell board-bottom" id="cell31">
               <div>
                 <p>Bishkek</p>
                 <p>200$</p>
               </div>
             </td>
-            <td className="cell board-bottom">
+            <td className="cell board-bottom" id="cell32">
               <div>
                 <p>Bishkek</p>
                 <p>200$</p>
               </div>
             </td>
-            <td className="cell board-bottom">
+            <td className="cell board-bottom" id="cell33">
               <div>
                 <p>Bishkek</p>
                 <p>200$</p>
               </div>
             </td>
-            <td className="cell board-bottom">
+            <td className="cell board-bottom" id="cell34">
               <div>
                 <p>Bishkek</p>
                 <p>200$</p>
               </div>
             </td>
-            <td className="cell board-bottom">
+            <td className="cell board-bottom" id="cell35">
               <div>
                 <p>Bishkek</p>
                 <p>200$</p>
               </div>
             </td>
-            <td className="cell board-bottom">
+            <td className="cell board-bottom" id="cell36">
               <div>
                 <p>Bishkek</p>
                 <p>200$</p>
               </div>
             </td>
-            <td className="cell board-bottom">
+            <td className="cell board-bottom" id="cell37">
               <div>
                 <p>Bishkek</p>
                 <p>200$</p>
               </div>
             </td>
-            <td className="cell board-bottom">
+            <td className="cell board-bottom" id="cell38">
               <div>
                 <p>Bishkek</p>
                 <p>200$</p>
               </div>
             </td>
-            <td className="cell board-bottom">
+            <td className="cell board-bottom" id="cell39">
               <div>
                 <p>Bishkek</p>
                 <p>200$</p>
               </div>
             </td>
-            <td className="cell board-corner">
+            <td className="cell board-corner" id="cell40">
               <div>
                 <p>Bishkek</p>
                 <p>200$</p>
@@ -1125,21 +881,15 @@ export function Map() {
           <tr>
             <td colspan="2" style={{ border: "none" }}>
               <div style={{ paddingTop: "8px" }}>
+                <p style={{ color: "black" }}>След ход:{usersdb[user].name}</p>
                 <input
                   type="button"
                   id="nextbutton"
                   title="Roll the dice and move your token accordingly."
                   value="Roll Dice"
                   onClick={() => {
-                    rollDice();
+                    handleClick();
                   }}
-                />
-                <input
-                  type="button"
-                  id="resignbutton"
-                  title="If you cannot pay your debt then you must resign from the game."
-                  value="Resign"
-                  onclick="game.resign();"
                 />
               </div>
             </td>
