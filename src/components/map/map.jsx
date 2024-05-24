@@ -1,4 +1,4 @@
-import "./map.css";
+
 import dieicon1 from "../../assets/img/Die_1.svg";
 import dieicon2 from "../../assets/img/Die-2.svg";
 import dieicon3 from "../../assets/img/Die-3.svg";
@@ -431,23 +431,23 @@ export function Map() {
             ) : (
               <td className="cell board-corner " id="cell1">
                 <div>
-                  <p>Bishkek</p>
-                  <p>200$</p>
+                  <p>GO</p>
+                  <p></p>
                 </div>
               </td>
             )}
             {usersdb[user].points == 2 ? (
               <td className="cell board-top selectcolor" id="cell2">
                 <div>
-                  <p>Bishkek</p>
-                  <p>200$</p>
+                  <p>Suyulak</p>
+                  <p>60$</p>
                 </div>
               </td>
             ) : (
               <td className="cell board-top" id="cell2">
                 <div>
-                  <p>Bishkek</p>
-                  <p>200$</p>
+                  <p>Suyulak</p>
+                  <p>60$</p>
                 </div>
               </td>
             )}
@@ -455,45 +455,45 @@ export function Map() {
             {usersdb[user].points == 3 ? (
               <td className="cell board-top selectcolor" id="cell3">
                 <div>
-                  <p>Bishkek</p>
-                  <p>200$</p>
+                  <p>Community Chest</p>
+                  <p>FOLLOW INSTRUCTIONS ON TOP CAR</p>
                 </div>
               </td>
             ) : (
               <td className="cell board-top" id="cell3">
                 <div>
-                  <p>Bishkek</p>
-                  <p>200$</p>
+                  <p>Community Chest</p>
+                  <p>FOLLOW INSTRUCTIONS ON TOP CAR</p>
                 </div>
               </td>
             )}
             {usersdb[user].points == 4 ? (
               <td className="cell board-top selectcolor" id="cell4">
                 <div>
-                  <p>Bishkek</p>
-                  <p>200$</p>
+                  <p>Batken</p>
+                  <p>60$</p>
                 </div>
               </td>
             ) : (
               <td className="cell board-top" id="cell4">
                 <div>
-                  <p>Bishkek</p>
-                  <p>200$</p>
+                  <p>Batken</p>
+                  <p>60$</p>
                 </div>
               </td>
             )}
             {usersdb[user].points == 5 ? (
               <td className="cell board-top selectcolor" id="cell5">
                 <div>
-                  <p>Bishkek</p>
+                  <p>City Tax</p>
                   <p>200$</p>
                 </div>
               </td>
             ) : (
               <td className="cell board-top" id="cell5">
                 <div>
-                  <p>Bishkek</p>
-                  <p>200$</p>
+                  <p>City Tax</p>
+                  <p>Pay $200</p>
                 </div>
               </td>
             )}
@@ -507,7 +507,7 @@ export function Map() {
             ) : (
               <td className="cell board-top" id="cell6">
                 <div>
-                  <p>Bishkek</p>
+                  <p>Osh-1</p>
                   <p>200$</p>
                 </div>
               </td>
@@ -522,8 +522,8 @@ export function Map() {
             ) : (
               <td className="cell board-top" id="cell7">
                 <div>
-                  <p>Bishkek</p>
-                  <p>200$</p>
+                  <p>Besh-Tash</p>
+                  <p>100$</p>
                 </div>
               </td>
             )}
@@ -537,8 +537,8 @@ export function Map() {
             ) : (
               <td className="cell board-top" id="cell8">
                 <div>
-                  <p>Bishkek</p>
-                  <p>200$</p>
+                  <p>Chance</p>
+                  <p>FOLLOW INSTRUCTIONS ON TOP CARD</p>
                 </div>
               </td>
             )}
@@ -552,8 +552,8 @@ export function Map() {
             ) : (
               <td className="cell board-top" id="cell9">
                 <div>
-                  <p>Bishkek</p>
-                  <p>200$</p>
+                  <p>Ak-Naryn</p>
+                  <p>100$</p>
                 </div>
               </td>
             )}
@@ -567,15 +567,15 @@ export function Map() {
             ) : (
               <td className="cell board-top" id="cell10">
                 <div>
-                  <p>Bishkek</p>
-                  <p>200$</p>
+                  <p>Talas</p>
+                  <p>120$</p>
                 </div>
               </td>
             )}
             <td className="cell board-corner" id="cell11">
               <div>
-                <p>Bishkek</p>
-                <p>200$</p>
+                <p>Just Visiting</p>
+                <p>Jail</p>
               </div>
             </td>
           </tr>
@@ -583,73 +583,73 @@ export function Map() {
             <td className="cell board-left" id="cell12">
               <div>
                 <p>Bishkek</p>
-                <p>200$</p>
+                <p>400$</p>
               </div>
             </td>
             <td colspan="9" class="board-center"></td>
             <td className="cell board-right" id="cell13">
               <div>
-                <p>Bishkek</p>
-                <p>200$</p>
+                <p>Kazarman</p>
+                <p>140$</p>
               </div>
             </td>
           </tr>
           <tr>
             <td className="cell board-left" id="cell14">
               <div>
-                <p>Bishkek</p>
-                <p>200$</p>
+                <p>LUXURY TAX</p>
+                <p>Pay $100</p>
               </div>
             </td>
             <td colspan="9" class="board-center"></td>
             <td className="cell board-right" id="cell15">
               <div>
-                <p>Bishkek</p>
-                <p>200$</p>
+                <p>Electric Company</p>
+                <p>150$</p>
               </div>
             </td>
           </tr>
           <tr>
             <td className="cell board-left" id="cell16">
               <div>
-                <p>Bishkek</p>
-                <p>200$</p>
+                <p>Osh</p>
+                <p>350$</p>
               </div>
             </td>
             <td colspan="9" class="board-center"></td>
             <td className="cell board-right" id="cell17">
               <div>
-                <p>Bishkek</p>
-                <p>200$</p>
+                <p>Tash-Kumyr</p>
+                <p>140$</p>
               </div>
             </td>
           </tr>
           <tr>
             <td className="cell board-left" id="cell18">
               <div>
-                <p>Bishkek</p>
-                <p>200$</p>
+                <p>Chance</p>
+                <p>FOLLOW INSTRUCTIONS ON TOP CARD</p>
               </div>
             </td>
             <td colspan="9" class="board-center"></td>
             <td className="cell board-right" id="cell19">
               <div>
-                <p>Bishkek</p>
-                <p>200$</p>
+                <p>Dzhalal-Abad</p>
+                <p>160$</p>
               </div>
             </td>
           </tr>
           <tr>
             <td className="cell board-left" id="cell20">
               <div>
-                <p>Bishkek</p>
+                <p>Bishkek-2</p>
                 <p>200$</p>
               </div>
             </td>
             <td colspan="9" class="board-center"></td>
             <td className="cell board-right" id="cell21">
               <div>
-                <p>Bishkek</p>
+                <p>Osh-2</p>
                 <p>200$</p>
               </div>
             </td>
@@ -657,59 +657,59 @@ export function Map() {
           <tr>
             <td className="cell board-left" id="cell22">
               <div>
-                <p>Bishkek</p>
-                <p>200$</p>
+                <p>KarakolKarakol</p>
+                <p>320$</p>
               </div>
             </td>
             <td colspan="9" class="board-center"></td>
             <td className="cell board-right" id="cell23">
               <div>
-                <p>Bishkek</p>
-                <p>200$</p>
+                <p>Sary-Oy</p>
+                <p>180$</p>
               </div>
             </td>
           </tr>
           <tr>
             <td className="cell board-left" id="cell24">
               <div>
-                <p>Bishkek</p>
-                <p>200$</p>
+                <p>Community Chest</p>
+                <p>FOLLOW INSTRUCTIONS ON TOP CARD</p>
               </div>
             </td>
             <td colspan="9" class="board-center"></td>
             <td className="cell board-right" id="cell25">
               <div>
-                <p>Bishkek</p>
-                <p>200$</p>
+                <p>Community Chest</p>
+                <p>FOLLOW INSTRUCTIONS ON TOP CARD</p>
               </div>
             </td>
           </tr>
           <tr>
             <td className="cell board-left" id="cell26">
               <div>
-                <p>Bishkek</p>
-                <p>200$</p>
+                <p>Cholpon-Ata</p>
+                <p>300$</p>
               </div>
             </td>
             <td colspan="9" class="board-center"></td>
             <td className="cell board-right" id="cell27">
               <div>
-                <p>Bishkek</p>
-                <p>200$</p>
+                <p>Uchkun</p>
+                <p>180$</p>
               </div>
             </td>
           </tr>
           <tr>
             <td className="cell board-left" id="cell28">
               <div>
-                <p>Bishkek</p>
-                <p>200$</p>
+                <p>Bostori</p>
+                <p>300$</p>
               </div>
             </td>
             <td colspan="9" class="board-center"></td>
             <td className="cell board-right" id="cell29">
               <div>
-                <p>Bishkek</p>
+                <p>Naryn</p>
                 <p>200$</p>
               </div>
             </td>
@@ -717,68 +717,68 @@ export function Map() {
           <tr>
             <td className="cell board-corner" id="cell30">
               <div>
-                <p>Bishkek</p>
-                <p>200$</p>
+                <p>Go to Jail</p>
+                <p>Go directly to Jail.</p>
               </div>
             </td>
             <td className="cell board-bottom" id="cell31">
               <div>
-                <p>Bishkek</p>
-                <p>200$</p>
+                <p>"Tokmok</p>
+                <p>280$</p>
               </div>
             </td>
             <td className="cell board-bottom" id="cell32">
               <div>
-                <p>Bishkek</p>
-                <p>200$</p>
+                <p>Water Works</p>
+                <p>150$</p>
               </div>
             </td>
             <td className="cell board-bottom" id="cell33">
               <div>
-                <p>Bishkek</p>
-                <p>200$</p>
+                <p>Kara-Balta</p>
+                <p>260$</p>
               </div>
             </td>
             <td className="cell board-bottom" id="cell34">
               <div>
-                <p>Bishkek</p>
-                <p>200$</p>
+                <p>Chon-Ary</p>
+                <p>260$</p>
               </div>
             </td>
             <td className="cell board-bottom" id="cell35">
               <div>
-                <p>Bishkek</p>
+                <p>Bishkek-1</p>
                 <p>200$</p>
               </div>
             </td>
             <td className="cell board-bottom" id="cell36">
               <div>
-                <p>Bishkek</p>
-                <p>200$</p>
+                <p>Uzgon</p>
+                <p>240$</p>
               </div>
             </td>
             <td className="cell board-bottom" id="cell37">
               <div>
-                <p>Bishkek</p>
-                <p>200$</p>
+                <p>Aravan</p>
+                <p>220$</p>
               </div>
             </td>
             <td className="cell board-bottom" id="cell38">
               <div>
-                <p>Bishkek</p>
-                <p>200$</p>
+                <p>Chance</p>
+                <p>FOLLOW INSTRUCTIONS ON TOP CARD</p>
               </div>
             </td>
             <td className="cell board-bottom" id="cell39">
               <div>
-                <p>Bishkek</p>
-                <p>200$</p>
+                <p>Nookat</p>
+                <p>220$</p>
               </div>
             </td>
             <td className="cell board-corner" id="cell40">
               <div>
-                <p>Bishkek</p>
-                <p>200$</p>
+                <p>Free Parking</p>
+                <p></p>
               </div>
             </td>
           </tr>
